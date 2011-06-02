@@ -22,7 +22,8 @@ class XmlToJson
   
     def parse_xml(params) 
       begin
-        api_response = Net::HTTP.get_response(URI.parse(@request['q']))
+        req = @request.query_string.gsub(/^q=/, '')
+        api_response = Net::HTTP.get_response(URI.parse(req))
         Crack::XML.parse(api_response.body) unless api_response.value # Raises an error unless status is 2xx
       rescue Exception => e
         @response.status = e.message.to_i # Push the status code
