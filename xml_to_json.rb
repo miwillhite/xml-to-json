@@ -8,7 +8,7 @@ class XmlToJson
   
     # i.e. http://www.earthtools.org/sun/45.505242/-122.595212/3/12/-0800/1
     xml_response = if @request['q']
-      parse_xml(@request['q'])
+      parse_xml @request['q']
     else
       { :error => "requires parameter 'q' to contain a url that returns an xml response" }
     end
